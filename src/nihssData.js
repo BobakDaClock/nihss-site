@@ -316,7 +316,13 @@ export const nihssItems = [
     ],
     images: {
       0: [{ src: "/Media/best-gaze-0.png", caption: "" }],
-      1: [{ src: "/Media/best-gaze-1.png", caption: "" }],
+      1: [
+        {
+          src: "/Media/best-gaze-1.png",
+          caption:
+            "The patient's left gaze is overcome by the oculocephalic head maneuver, now the eyes face straight, if even for a moment",
+        },
+      ],
       2: [{ src: "/Media/best-gaze-2.png", caption: "" }],
     },
     faqs: [
@@ -411,7 +417,7 @@ export const nihssItems = [
         question:
           "The patient is missing only the top left field of their vision (Left superior quadrantanopia), or 1 quadrant of vision, how do I score this? ",
         answer:
-          "First, have the patient cover their affected eye, left in this case, and test to verify the right eye is also affected. Now have them cover their right eye and repeat the test. Quadrantanopia almost always occurs bilaterally, generally a single eye defect or singular eye quadrant missing suggests damage to the eye or optic nerve rather than visual pathways.",
+          "First, have the patient cover their affected eye, left in this case, and test to verify the right eye is also affected. Now have them cover their right eye and repeat the test, if so score = 1. Quadrantanopia almost always occurs bilaterally, generally a single eye defect or singular eye quadrant missing suggests damage to the eye or optic nerve rather than visual pathways.",
       },
       {
         question:
