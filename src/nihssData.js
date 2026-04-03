@@ -39,7 +39,32 @@ export const nihssItems = [
       {
         question: "What if the patient is drowsy but arousable?",
         answer:
-          "Score based on the actual response elicited. Drowsiness alone does not determine the score.",
+          "Score based on the actual response elicited. Drowsiness alone does not determine the score. I.E. A patient who seems lethargic, which would more likely prompt a score of 1, but opens their eyes the moment you walk in the room, would thus prompt a score of 0 or Alert.",
+      },
+      {
+        question: "Patient is intubated.",
+        answer:
+          "Judge the patient on their consciousness, remember for this component we are testing their responsiveness to their environment. If the patient responds to your presence, or your prompting, quickly and demonstrates alertness, then score 0.",
+      },
+      {
+        question: "Patient is sleeping.",
+        answer:
+          "This patient would initially score a 1 as they are not alert at the beginning of the test, but should they stay awake till your next test, and stay keenly responsive, they will be scored a 0 on their next exam. These exams can be as frequent as needed to demonstrate patient's most accurate exam as long as the order supports testing more frequently as needed.",
+      },
+      {
+        question: "Patient is somnolent.",
+        answer:
+          "Does the patient wake easy? If you call their name or lightly touch them do they respond rather quickly? Then they will score a 1 even if they return to sleep rather quickly after the interaction. Does the patient require repeated or strong noxious stimuli? Then you will be scoring them as a 2.",
+      },
+      {
+        question: "Patient is being actively sedated.",
+        answer:
+          "Remember, we are judging the patient's alertness. In this case it can be judged independent from their dosage of sedation; I.E. they may be on a higher dose of Dexmedetomidine, yet fully alert and briskly responsive.",
+      },
+      {
+        question: "What is the official NIHSS approach to stimulation?",
+        answer:
+          "Observe first, attempt verbal stimulation, move to light tactile stimulation, then only if needed move to noxious stimulation. Do not jump straight to sternal rub.",
       },
     ],
     misconceptions: [
@@ -56,7 +81,8 @@ export const nihssItems = [
       {
         short: "Baseline matters",
         myth: "Chronic mental status affects scoring.",
-        truth: "Score what is observed now.",
+        truth:
+          "Score what is observed now, NIHSS scores current impairment, not just the change caused by new event.",
       },
       {
         short: "Eyes open = alert",
@@ -66,12 +92,13 @@ export const nihssItems = [
       {
         short: "Pain = best test",
         myth: "Only painful stimuli should be used.",
-        truth: "Start with least noxious stimulation.",
+        truth: "Start with least noxious stimulation, escalate as needed.",
       },
       {
         short: "Reflex = purposeful",
         myth: "Any movement counts as response.",
-        truth: "Differentiate reflex from purposeful movement.",
+        truth:
+          "Differentiate reflex from purposeful movement. Triple flexion reflex is not a purposeful withdrawal movement, and does not count as movement to painful stimulus.",
       },
     ],
   },
@@ -104,7 +131,7 @@ export const nihssItems = [
     faqs: [
       {
         question:
-          "What should I do if the patient cannot answer clearly because of aphasia or confusion?",
+          "What should I do if the patient cannot answer clearly because of dysarthria?",
         answer:
           "Use the patient's best verbal attempt and score only what they can actually answer correctly.",
       },
@@ -112,6 +139,32 @@ export const nihssItems = [
         question: "What if the patient answers partially correct?",
         answer:
           "Only fully correct answers count. Partial correctness does not receive credit.",
+      },
+      {
+        question:
+          "A receptively aphasic patient can not understand the questions you either ask or demonstrate through other means, what next?",
+        answer:
+          "A patient who is unable to comprehend the questions asked will score a 2.",
+      },
+      {
+        question: "What if the patient is in a coma state? ",
+        answer: "Patient is scored a 2 for this state.",
+      },
+      {
+        question: "What if the patient has expressive (Broca's) aphasia?",
+        answer:
+          "As expressive aphasia can also affect writing ability, attempt to facilitate other means of communication. Does the patient nod appropriately to test questions? If so attempt to score based upon correct answers acquired through this method. If the patient is severely aphasic and can not demonstrate a correct answer in anyway, they are scored a 2.",
+      },
+      {
+        question:
+          "What if the patient has receptive (Wernicke's) aphasia and can not understand the questions asked?",
+        answer:
+          "If the patient can not understand the questions in this scenario, they are scored a 2.",
+      },
+      {
+        question: "Patient is intubated.",
+        answer:
+          "Intubated patients unable to speak because of any physical or neurological barrier NOT secondary to aphasia are scored a 1.",
       },
     ],
     misconceptions: [
@@ -138,7 +191,8 @@ export const nihssItems = [
       {
         short: "Speech clarity matters",
         myth: "Slurring affects score.",
-        truth: "Only correctness of answer matters.",
+        truth:
+          "Only correctness of answer matters, speech clarity is judged, or scored, in the NIHSS component of dysarthria.",
       },
       {
         short: "Delay = incorrect",
@@ -173,21 +227,50 @@ export const nihssItems = [
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with loc commands?",
+          "What should I do if the patient has difficulty with loc commands due to weakness?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "Judge based on the patient's attempt, credit is given if the patient makes a discernible and clear effort to follow commands, but fails due to weakness.",
+      },
+      {
+        question:
+          "How many attempts does the patient receive to execute the command correctly",
+        answer:
+          "The patient's first attempt must be judged and scored, you may give the patient more time as needed, and repeat the command once. Additionally, after repeating the verbal command you may use pantomime to demonstrate the command once. At this point if the patient has not responded or attempted, they are scored a 1 for this command, if this occurs with the next command as well, they are scored a 2.",
+      },
+      {
+        question: "What are the official NIHSS approved commands?",
+        answer:
+          "You may ask the patient to open and close their eyes as one command, and the second command should be a request for the patient to grip and release with their hand.",
+      },
+      {
+        question:
+          "What if the both hands are paretic or the patient has bilateral upper extremity amputations?",
+        answer:
+          "Substitute with another one-step command such as asking the patient to open their mouth or wiggle their toes.",
+      },
+      {
+        question: "What if the patient is aphasic?",
+        answer:
+          "Demonstrate the command using pantomime and score the patient's first attempt.",
+      },
+      {
+        question: "What if the patient is in a coma, or otherwise unarousable?",
+        answer:
+          "Patient's unable to follow commands due to level of consciousness barriers are scored a 2.",
       },
     ],
     misconceptions: [
       {
         short: "Effort = success",
-        myth: "Trying counts as correct.",
-        truth: "Only correct execution counts.",
+        myth: "Any effort counts as correct.",
+        truth:
+          "Only correct effort counts, if asked to show a thumbs up, and a patient simply opens their hand or squeezes their hand, this is judged as a failure to follow.",
       },
       {
         short: "Repeat freely",
         myth: "Commands can be repeated multiple times.",
-        truth: "Only limited repetition allowed.",
+        truth:
+          "Only limited repetition allowed, Total of verbal commands = 2, total pantomime = 1.",
       },
       {
         short: "Motor ignored",
@@ -195,19 +278,21 @@ export const nihssItems = [
         truth: "Motor deficits must be considered.",
       },
       {
-        short: "Partial = correct",
-        myth: "Partial movement counts.",
-        truth: "Must fully complete command.",
+        short: "Partial = automatically correct",
+        myth: "Partial movements count as they show attempt.",
+        truth:
+          "Must fully complete command, exception here is a clear discernible attempt at command is made but failed due to weakness.",
       },
       {
-        short: "Demonstration allowed",
-        myth: "You can show the action.",
-        truth: "Commands must be verbal only.",
+        short: "Demonstration not allowed",
+        myth: "You must use verbal commands only.",
+        truth:
+          "You can use pantomime once to demonstrate command, after attempting verbal initially, and verbal once more for a total of two verbal and one pantomime.",
       },
       {
         short: "Wrong task okay",
         myth: "Doing a different task is acceptable.",
-        truth: "Must perform the exact command.",
+        truth: "Must make discernible effort to perform the exact command.",
       },
     ],
   },
@@ -237,26 +322,46 @@ export const nihssItems = [
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with best gaze?",
+          "What should I do if the patient has difficulty with best gaze test instructions, such as following my hand?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "Attempt and to test gaze by walking around bed, or having another nurse on the opposite side of the bed. See if the patient tracks you around the bed, or can switch from nurse to nurse on opposing sides of bed. You may hold their head still when having them track another individual, if they can not comprehend instructions but track.",
+      },
+      {
+        question:
+          "What if the patient has a conjugate (cooperative or uniform movement) deviation of the eyes but can overcome the gaze to track me, then goes back to gaze at rest?",
+        answer:
+          "This is scored a 1. The patient has a partial gaze palsy that can be overcome by voluntary or reflexive activity.",
+      },
+      {
+        question:
+          "What if the patient has a deviation or gaze, but is unable to follow directions, either comatose or obtunded, even lethargic and unable to maintain focus on task?",
+        answer:
+          "Then you must attempt an oculocephalic head movement reflex exam. Should the patient's eyes overcome the deviation or gaze when the head is moved, you will score a 1. If the eyes remain completely laterally fixed in either direction, score a 2.",
+      },
+      {
+        question:
+          "Can I test an aphasic patient who can't understand the exam?",
+        answer:
+          "Yes, you can either walk around the room while keeping the patient's attention to ensure they track you through their gaze or fields, or you use the oculocephalic head movement reflex exam. Should the patient's eyes overcome the deviation or gaze when the head is moved, you will score a 1. If the eyes remain completely laterally fixed in either direction, score a 2.",
       },
     ],
     misconceptions: [
       {
         short: "Head = gaze",
         myth: "Head turning equals eye movement.",
-        truth: "Eyes must move independently.",
+        truth: "Eyes must move independently of head.",
       },
       {
         short: "Tracking = normal",
         myth: "Any tracking means normal.",
-        truth: "Partial palsy still scores abnormal.",
+        truth:
+          "Partial palsy still scores abnormal and can involve tracking through half the field of eye movement.",
       },
       {
         short: "Effort = deficit",
         myth: "Poor effort means gaze palsy.",
-        truth: "Confirm with reflex movements.",
+        truth:
+          "Confirm with reflex movements such as the oculocephalic head movement.",
       },
       {
         short: "One direction enough",
@@ -266,7 +371,8 @@ export const nihssItems = [
       {
         short: "Resting gaze ignored",
         myth: "Only movement matters.",
-        truth: "Resting deviation is critical.",
+        truth:
+          "Resting deviation is critical, a truly forced deviation will be obvious at rest.",
       },
       {
         short: "Eyes + head together",
@@ -303,21 +409,47 @@ export const nihssItems = [
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with visual fields?",
+          "The patient is missing only the top left field of their vision (Left superior quadrantanopia), or 1 quadrant of vision, how do I score this? ",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "First, have the patient cover their affected eye, left in this case, and test to verify the right eye is also affected. Now have them cover their right eye and repeat the test. Quadrantanopia almost always occurs bilaterally, generally a single eye defect or singular eye quadrant missing suggests damage to the eye or optic nerve rather than visual pathways.",
+      },
+      {
+        question:
+          "The patient is missing the top left and bottom left quadrant of both eyes, how is this scored? ",
+        answer:
+          "This is known as left homonymous hemianopia, a fancy way to say that the left side of the visual field is affected in both eyes. If it were the right side of both it would simply be right* homonymous hemianopia, a good visual of which is displayed above when you click 2 = Complete hemianopia, the score for this condition.",
+      },
+      {
+        question:
+          "What if the patient was blind from a previous event or another condition",
+        answer:
+          "According to the rules for scoring the NIHSS correctly, they would be scored a 3, to indicate all current deficits, although it may not be secondary to current neurological insult.",
+      },
+      {
+        question:
+          "What if during confrontation testing, the patient correctly identifies fingers in the left and right visual fields when tested individually, but fails to report the left side when both sides are presented simultaneously?",
+        answer:
+          "This is one of the more difficult aspects of scoring the visual component. In this situation, the patient is presenting inattention/extinction (item 11). Many people score this incorrectly as hemianopia which = 2, but in this case, you will score 1 for visual and use the results to now score item 11.",
+      },
+      {
+        question:
+          "The patient consistently misses stimuli in the upper left quadrant of both eyes, but correctly identifies in all other fields",
+        answer:
+          "This is a prime example of 1 = Partial hemianopia, not to be confused with 2 = Complete hemianopia which would indicate both upper AND lower left quadrants of BOTH eyes, or simply the left half of both eyes. The same scoring would occur if the deficits were as described, but right sided.",
       },
     ],
     misconceptions: [
       {
         short: "Eye movement proves",
         myth: "Looking proves intact fields.",
-        truth: "Confrontation testing is required.",
+        truth:
+          "Confrontation testing is required, patient may look into direction yet not have full field of view.",
       },
       {
         short: "Neglect = field cut",
         myth: "Missing side = hemianopia.",
-        truth: "Neglect and field loss differ.",
+        truth:
+          "Neglect and field loss differ, although they may present at the same time, they are unique deficits.",
       },
       {
         short: "Poor effort = deficit",
@@ -337,7 +469,14 @@ export const nihssItems = [
       {
         short: "Method irrelevant",
         myth: "Any test method works.",
-        truth: "Consistency is critical.",
+        truth:
+          "Consistency is critical, especially when testing with threat, one must maintain a consistent style.",
+      },
+      {
+        short: "Can't test comatose patients",
+        myth: "You can not test patients in comatose or otherwise altered states, even intubated patients can not confirm their vision so you score 0.",
+        truth:
+          "You can, and must test every patient for visual fields. Any patient that is unable to participate in testing actively must be tested using threat.",
       },
     ],
   },
@@ -378,17 +517,40 @@ export const nihssItems = [
     },
     faqs: [
       {
-        question:
-          "What should I do if the patient has difficulty with facial palsy?",
+        question: "The patient is intubated.",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "If they are alert ask them to raise eye brows and attempt to smile. If not alert, use stimuli such as a shoulder pinch or other noxious stimuli in a less noxious to more noxious methodology to cause the patient to grimace.",
+      },
+      {
+        question:
+          "What if the patient has baseline facial asymmetry, e.g., prior Bell's palsy or stroke",
+        answer:
+          "In certain circumstances, when the baseline is confirmed and supported by documentation, you may consider scoring a 0, but if you are unsure or lack supporting evidence, if there is any doubt, score what you see!",
+      },
+      {
+        question:
+          "The patient is displaying weakness or is sedated and lacks effort in facial expression, how do I score?",
+        answer:
+          "If you are able to see any movement at all, judge its symmetry. If the patient is attempting to follow your command, and follows other commands, but when asked to smile or raise eyebrows there is no movement at all, score = 3. Main differentiating factor here is if there is any movement we know complete paralysis not present, therefore we observe for equality.",
+      },
+      {
+        question:
+          "How do I tell the different between a patient who should be scored a 1 vs a 2",
+        answer:
+          "Pay close attention to the presence of noticeable movement, is the upper and lower side which is affected still moving, even if out of equal proportion to the other side? If this is so, score = 1. If the affected side displays near total movement loss, score = 2. Pay close attention to the lower portion of the face, it carries more testing weight so to speak, if it is mostly unmoving, or the top of the affected side moves and the bottom of the affected side does not, score = 2.",
+      },
+      {
+        question: "Then what is the difference between a score of 2 vs 3",
+        answer:
+          "Once you've assessed that one side is unequal to the other, look closely and assess how much muscle tone or movement is present, some movement in upper side of affected face, little to none in the bottom, score = 2. Upper and lower portion of affected side show no movement what so ever score = 3. Upper affected side shows some slight movement, lower affected shows none score = 3.",
       },
     ],
     misconceptions: [
       {
         short: "Rest symmetry enough",
         myth: "Normal rest = normal function.",
-        truth: "Must assess active movement.",
+        truth:
+          "Must assess active movement, sometimes you can see a droop at rest, other times due to facial anatomy what appears to be the dropping is actually the unaffected side once the patient attempts to smile or speak.",
       },
       {
         short: "Mild ignored",
@@ -398,17 +560,18 @@ export const nihssItems = [
       {
         short: "Speech reflects face",
         myth: "Speech = facial strength.",
-        truth: "They are separate functions.",
+        truth:
+          "They are separate functions, patient's can have dysarthria and no facial droop, or have a droop and no dysarthria.",
       },
       {
         short: "Only smile matters",
         myth: "Smile alone is enough.",
-        truth: "Multiple movements required.",
+        truth: "Multiple movements required, raising eyebrows for example.",
       },
       {
         short: "Baseline ignored",
         myth: "Pre-existing asymmetry doesn’t matter.",
-        truth: "Consider baseline if known.",
+        truth: "Consider baseline if known and supported by documentation.",
       },
       {
         short: "Symmetry always clear",
@@ -447,26 +610,52 @@ export const nihssItems = [
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with motor arm?",
+          "What if the patient raises their arm, it drops only a little bit, such as half an inch, and then stabilizes and shows no drift for the remainder of the 10 second hold?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "Initial drift, not caused by something such as cables from SpO2 monitors, or other physical barriers is scored a 1, even if it is for just a moment once eyes close.",
+      },
+      {
+        question:
+          "What if the patient can not lift their arm to 90 degrees when sitting or 45 degrees when supine?",
+        answer:
+          "Lift the patient's arm for them. Let it go, and have them close their eyes. Once you let go of the arm zero drift = 0, even a moment of drift and recovery for the entire 10 seconds, will = 1. Going forward, if the arm drifts down to bed, but makes efforts against gravity during and after it hits the bed score = 2. If the arm immediately falls to bed score 3 or 4, depending on whether there is any movement or complete flaccidity/reflexive movement only respectively.",
+      },
+      {
+        question:
+          "What is the main difference between score of 1 and a score of 2?",
+        answer:
+          "The major deciding factors are whether the patient can raise the arm to the beginning point of 90 degrees when sitting or 45 degrees when supine, and whether or not the arm touches the bed within the 10 second hold period, even once. Should it touch the bed or railing score = 2, if it drifts all the way down but touches neither score = 1. If the patient can not reach starting height score depending on what happens once you release the arm at starting height.",
+      },
+      {
+        question:
+          "How would I score an aphasic patient that does not comprehend my instructions?",
+        answer:
+          "You can encourage the patient using urgency in your voice and pantomime but you are instructed to not utilize noxious stimulation, as this test is designed to test voluntary movement.",
+      },
+      {
+        question: "How to score a comatose patient?",
+        answer:
+          "As per the NIHSS, technically a patient should not be tested using pain or noxious stimuli when in a comatose state, as such this patient should be scored a 3 or 4, for a stuporous patient who makes even a tiny movement in arm (scored 3), and a coma patient who makes no effort (scored 4).",
       },
     ],
     misconceptions: [
       {
         short: "Fast drop = 4",
-        myth: "Quick drop = no movement.",
-        truth: "Assess effort against gravity.",
+        myth: "Quick drop = then no movement.",
+        truth:
+          "Assess effort against gravity, and if they touch bed or railing.",
       },
       {
         short: "Pain ignored",
         myth: "Pain doesn’t affect results.",
-        truth: "Distinguish neurologic weakness.",
+        truth:
+          "Distinguish neurologic weakness. Some patients won't react to painful or noxious stimuli but will be observed moving limbs non-purposefully, this is what you score.",
       },
       {
         short: "Both arms together",
         myth: "Score arms together.",
-        truth: "Each arm scored separately.",
+        truth:
+          "Each arm scored separately. Technically this is the correct method.",
       },
       {
         short: "Position flexible",
@@ -515,9 +704,26 @@ export const nihssItems = [
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with motor leg?",
+          "What if the patient raises their leg, it drops a slight amount such as half an inch, and then stabilizes and shows no drift for the remainder of the 10 second hold?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "Initial drift, not caused by something such as cables from SpO2 monitors, or other physical barriers is scored a 1, even if it is for just a moment once eyes close.",
+      },
+      {
+        question:
+          "What if the patient can not lift their leg to 30 degrees when supine?",
+        answer:
+          "Lift the patient's leg for them. Let it go, and have them close their eyes. At this point, zero drift = 0, any drift, even transient momentary drift and then 5 seconds maintained after is scored a 1. Going forward, if the arm drifts down to bed, but makes efforts against gravity during and after it hits the bed score = 2. If the arm immediately falls to bed score 3 or 4, depending on whether there is any movement or complete flaccidity/reflexive movement only respectively.",
+      },
+      {
+        question:
+          "What is the main difference between score of 1 and a score of 2?",
+        answer:
+          "The major deciding factor is whether or not the leg touches the bed within the 5 second hold period, even once. Should it touch the bed or railing score = 2, if it drifts all the way down but touches neither score = 1.",
+      },
+      {
+        question: "How to score a comatose patient?",
+        answer:
+          "As per the NIHSS, technically a patient should not be tested using pain or noxious stimuli when in a comatose state, as such this patient should be scored a 3 or 4, for a stuporous patient who makes even a tiny movement in arm (scored 3), and a coma patient who makes no effort (scored 4). Of course, if there is witnessed movement at any point during care of the patient, you can use this to score the patient.",
       },
     ],
     misconceptions: [
@@ -579,21 +785,40 @@ export const nihssItems = [
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with limb ataxia?",
+          "What should I do if the patient has difficulty with limb ataxia due to weakness?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "Limb ataxia is one of the few components which are considered absent or a score of 0, if they can not be tested due to weakness or other barriers which prevent testing.",
+      },
+      {
+        question:
+          "What if the patient misses the target due to a visual deficit",
+        answer:
+          "You can not score ataxia if the error is due to visual impairment, ensure the patient can see the target you utilize. You must bring the target into a good visual field where sight for the patient is good, then score purely ataxic deficits in this component",
+      },
+      {
+        question:
+          "What if the patient is shaky, slow or movement is otherwise irregular?",
+        answer:
+          "You are scoring coordination, or the lack there of, not the abnormal movement quality, so if the patient is shaky or demonstrates an irregular movement, but lands perfectly on target, you score ataxia a 0. If the patient misses the target in one limb, score = 1, two limbs = 2.",
+      },
+      {
+        question:
+          "The NIHSS states - Only in the case of amputation or joint fusion, the examiner should record the score as untestable (UN), and clearly write the explanation for this choice. In case of blindness, test by having the patient touch nose from extended arm position. What does this really mean?",
+        answer:
+          "Ataxia is considered absent in a patient who cannot understand or is paralyzed, using (UN) is reserved for mechanical impossibilities, not neurologic inability, which is scored a 0. Remember, ataxia is meant to represent coordination dysfunction independent of strength.",
       },
     ],
     misconceptions: [
       {
         short: "Weakness = ataxia",
         myth: "Poor movement = ataxia.",
-        truth: "Must be out of proportion to weakness.",
+        truth:
+          "Must be out of proportion to weakness, simply put, the coordination problem is greater than what you would expect from the level of weakness alone.",
       },
       {
         short: "Any miss counts",
         myth: "Small errors count.",
-        truth: "Only clear dysmetria counts.",
+        truth: "Only clear dysmetria counts, if unable to test, ataxia = 0.",
       },
       {
         short: "Always test",
@@ -641,17 +866,34 @@ export const nihssItems = [
     },
     faqs: [
       {
-        question:
-          "What should I do if the patient has difficulty with sensory?",
+        question: "What should I do if the patient is in a coma (item 1a = 3)?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "In this case, the patient is automatically scored a 2 on this component of the NIHSS.",
+      },
+      {
+        question:
+          "What happens if the patient withdraws from the stimulus, but states they do not feel it?",
+        answer:
+          "Score is based on what the patient endorses or reports, we are testing sensation not reflex or motor response. Motor response or reflex can be used but only in conjunction with a demonstration/endorsement of awareness to said stimuli.",
+      },
+      {
+        question:
+          "How does one test for sensation in an aphasic, intubated or otherwise unable to respond patient?",
+        answer:
+          "You must look for evidence of conscious awareness, not movement alone. If the patient who is alert and intubated, moves their arm reflexively but shows absolutely no awareness (grimace, glance at testing site, movement of eyes or other), then we must score them a 2. If the same patient shows some slight awareness, such as an eventual glance toward tested site, or perception of the stimuli shows barely in a subtle fashion, it is more appropriate to score a 1.",
+        media: {
+          type: "image",
+          src: "/Media/Sensory-Movement-vs-awareness-FAQ3.png",
+          caption: "Notice the patient's awareness in the second slide",
+        },
       },
     ],
     misconceptions: [
       {
         short: "Subjective only",
         myth: "Patient report is enough.",
-        truth: "Use standardized testing.",
+        truth:
+          "Use standardized testing in conjunction with patient endorsement or denial.",
       },
       {
         short: "Neglect = sensory",
@@ -661,7 +903,8 @@ export const nihssItems = [
       {
         short: "Old deficits count",
         myth: "Chronic loss affects score.",
-        truth: "Score acute findings.",
+        truth:
+          "Score acute findings only unless you have exact evidenced or documented descriptions of previous baseline deficits, when in doubt score what you see!",
       },
       {
         short: "Light touch enough",
@@ -708,9 +951,37 @@ export const nihssItems = [
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with best language?",
+          "What if the patient can not speak clearly, but demonstrates they understand all commands and conversation?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "Slurred or unclear speech alone is not aphasia. In the Best Language component, you are assessing the patient’s ability to understand and produce meaningful language, not how clearly they can articulate words. Speech clarity affected by facial weakness, motor impairment or other physical barrier is scored under Dysarthria (Item 10). However, a patient may have both dysarthria and aphasia, so always evaluate whether the content and comprehension of language are intact. Assess the patient's receptive and expressive comprehension, not articulation.",
+      },
+      {
+        question:
+          "What if the patient is answering incorrectly, seemingly confused, but the answers are completely out of proportion to the questions ask?",
+        answer:
+          "If the patient is confused, they may answer incorrectly and this can demonstrate their confusion, but if the patient is answering with very abstract, fragmented responses, and shows an inability to name objects correctly they are most likely aphasic rather than confused.",
+      },
+      {
+        question:
+          "How do I differentiate aphasia from decreased consciousness?",
+        answer:
+          "You assessed LOC in item 1 (LOC), if the patient is drowsy or unresponsive and this correlates to your LOC findings, you can not make the assumption that it is aphasia. If the patient is awake and alert, even tracking you but simply does not respond to any prompting, they are most likely globally mute (Score = 3), or at the very least severely expressively aphasic (Score = 2), further testing should be conducted.",
+      },
+      {
+        question:
+          "What if the patient is in a coma, scored this way by Glasgow Coma Scale score of less than 8, or findings from NIHSS item 1a being scored a 3, indicating coma?",
+        answer:
+          "Patient is automatically scored a 3 = Mute, global aphasia on this item.",
+      },
+      {
+        question: "What if the patient is intubated.",
+        answer:
+          "The patient must be tested by utilization of other techniques, such as writing answers to objects you show them.",
+      },
+      {
+        question: "What if the patient exhibits total blindness?",
+        answer:
+          "Test by placing objects in the patient's hand for them to identify.",
       },
     ],
     misconceptions: [
@@ -758,6 +1029,7 @@ export const nihssItems = [
       "0 = Normal",
       "1 = Mild-to-moderate dysarthria",
       "2 = Severe dysarthria",
+      "3 = UN = Intubated",
     ],
     tips: [
       "Dysarthria concerns articulation, not word choice or comprehension.",
@@ -767,14 +1039,58 @@ export const nihssItems = [
     images: {
       0: [{ src: "/Media/dysarthria-0.png", caption: "" }],
       1: [{ src: "/Media/dysarthria-1.png", caption: "" }],
-      2: [{ src: "/Media/dysarthria-2.png", caption: "" }],
+      2: [
+        {
+          src: "/Media/dysarthria-2.png",
+          caption: "Patient may be completely incomprehensible",
+        },
+        {
+          src: "/Media/dysarthria-2b.png",
+          caption: "Or the Patient may be entirely mute, both are scored a 2 ",
+        },
+      ],
+      3: [{ src: "/Media/dysarthria-3.png", caption: "" }],
     },
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with dysarthria?",
+          "What if the patient can not speak due to intubation or other mechanical barrier?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "This is not dysarthria, and if testing speech is impossible then we use the score of UN = Intubated.",
+      },
+      {
+        question:
+          "What if the patient's speech is very slurred, but the words and meaning inferred or understanding achieved from utilizing methods such as writing shows complete comprehension?",
+        answer:
+          "This is exactly what dysarthria is, language and understanding are to be separate from speech articulation, which we are testing here. Language and comprehension were tested in the NIHSS component of best language. Score based on level of dysarthria only, if the patient slurs or slowly responds, but is mostly understood with some difficulty, score = 1. If the patient's speech is so slurred as to become fragmentary requiring great need for inference, question, or guessing, score = 2.  ",
+      },
+      {
+        question:
+          "What if the patient is also aphasic to some degree, how do I score dysarthria from their answers or item identifications if they are incorrect?",
+        answer:
+          "As you are scoring their speech here, you must score its articulation and intelligibility out of proportion to any dysphasia. Is the speech unintelligibility worse than what their aphasia alone would explain? Essentially, if the patient understands everything but speech is completely unintelligible, score = 2. If the patient has some language impairment, but speech is far more slurred than expected, score = 2.",
+      },
+      {
+        question:
+          "The patient is answering all my questions wrong, or with random words, what now?",
+        answer:
+          "If the articulation of the wrong answers is clear, score = 0, as we are not testing comprehension, that is tested in the NIHSS component of best language.",
+      },
+      {
+        question:
+          "Dysarthria vs Aphasia when a patient is producing very limited amounts of speech.",
+        answer:
+          "In best language, did the patient understand? could they write and gesture correctly? This would most likely be dysarthria and hesitation to speak due to perceived deficit. If the patient can not form correct words, uses incorrect or nonsensical language, or can not comprehend, but speech is clear, this is likely aphasia.",
+      },
+      {
+        question: "What if the patient just stares at me and does not respond?",
+        answer:
+          "Did the patient follow commands when you used pantomime, do they track you and are alert? If you answered yes, and they will not respond verbally, then you score them a 2 = Severe dysarthria.",
+      },
+      {
+        question:
+          "What if the patient is in a coma or sedated to a very low RASS score?",
+        answer: "We can not assume dysarthria and as such score = 0.",
       },
     ],
     misconceptions: [
@@ -786,7 +1102,8 @@ export const nihssItems = [
       {
         short: "Mute = dysarthria",
         myth: "No speech = dysarthria.",
-        truth: "Could be aphasia or LOC.",
+        truth:
+          "Could be aphasia or LOC, cause of no speech can be something other than articulation issues.",
       },
       {
         short: "Accent confusion",
@@ -830,15 +1147,38 @@ export const nihssItems = [
     ],
     images: {
       0: [{ src: "/Media/extinction-inattention-0.png", caption: "" }],
-      1: [{ src: "/Media/extinction-inattention-1.png", caption: "" }],
-      2: [{ src: "/Media/extinction-inattention-2.png", caption: "" }],
+      1: [
+        {
+          src: "/Media/extinction-inattention-1.png",
+          caption:
+            "Patient feels right side when tested alone, but does not attend to it once tested simultaneously with left.",
+        },
+      ],
+      2: [
+        {
+          src: "/Media/extinction-inattention-2.png",
+          caption:
+            "Patient does not attend to right side at all and throughout all attempts at stimulation.",
+        },
+      ],
     },
     faqs: [
       {
         question:
-          "What should I do if the patient has difficulty with extinction / inattention?",
+          "What if the patient detects stimuli on each side when tested individually, but misses one side when tested simultaneously?",
+        answer: "This is classic extinction, score = 1.",
+      },
+      {
+        question:
+          "If the patient has a field cut identified in item 3: Visual, how do I differentiate from true inattention (neglect)?",
         answer:
-          "Use the best valid bedside method available and score only what is actually demonstrated.",
+          "If the patient can not see the missing visual field even when tested alone, it is a visual field cut. If the patient initially identifies the field, but ignores it when simultaneously tested, this is extinction/inattention and will be scored a 1.",
+      },
+      {
+        question:
+          "What if my patient denies ownership of a limb or does not recognize it as their own?",
+        answer:
+          "This may be anosognosia, where the patient is unaware or does not comprehend their condition, or asomatognosia, where the patient feels as though the limb is missing or not belonging to them. Both of these are scored as a 2 = Profound hemi-inattention or extinction.",
       },
     ],
     misconceptions: [

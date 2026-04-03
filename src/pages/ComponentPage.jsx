@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { nihssItems } from "../nihssData";
+import FAQMedia from "./FAQMedia.jsx";
 
 function getImageEntries(item, scoreIndex) {
   if (item.images && item.images[scoreIndex]) {
@@ -173,30 +174,42 @@ export default function ComponentPage() {
                 </div>
               )}
             </div>
-
-            {/* FAQ (NOW DATA-DRIVEN + MULTIPLE) */}
-            <div className="mt-6 space-y-4">
-              {faqs.map((faq, index) => (
-                <div key={index}>
-                  <button
-                    onClick={() => setFaqOpen(faqOpen === index ? null : index)}
-                    className="w-full rounded-[1.25rem] border border-white/70 bg-white/36 px-5 py-4 text-left text-base font-medium text-slate-800 backdrop-blur-2xl"
-                  >
-                    <div className="flex justify-between">
-                      <span>{faq.question}</span>
-                      <span>{faqOpen === index ? "−" : "+"}</span>
-                    </div>
-                  </button>
-
-                  {faqOpen === index && (
-                    <div className="mt-2 rounded-[1.25rem] border border-white/70 bg-white/34 px-5 py-4 text-slate-700">
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
           </div>
+
+          {/* COMMON QUESTIONS */}
+          {faqs.length > 0 && (
+            <div className="mt-8 rounded-[1.75rem] border border-white/65 bg-white/28 p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]">
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-sky-600/90">
+                Common Questions
+              </p>
+
+              <div className="mt-6 space-y-4">
+                {faqs.map((faq, index) => (
+                  <div key={index}>
+                    <button
+                      onClick={() =>
+                        setFaqOpen(faqOpen === index ? null : index)
+                      }
+                      className="w-full rounded-[1.25rem] border border-white/70 bg-white/36 px-5 py-4 text-left text-base font-medium text-slate-800 backdrop-blur-2xl"
+                    >
+                      <div className="flex justify-between">
+                        <span>{faq.question}</span>
+                        <span>{faqOpen === index ? "−" : "+"}</span>
+                      </div>
+                    </button>
+
+                    {faqOpen === index && (
+                      <div className="mt-2 rounded-[1.25rem] border border-white/70 bg-white/34 px-5 py-4 text-slate-700 space-y-4">
+                        <div>{faq.answer}</div>
+
+                        {faq.media && <FAQMedia media={faq.media} />}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       </div>
     </main>
