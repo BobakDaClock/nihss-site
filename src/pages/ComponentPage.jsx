@@ -62,10 +62,18 @@ export default function ComponentPage() {
     setImageError(false);
 
     setTimeout(() => {
-      mediaRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      if (mediaRef.current) {
+        const yOffset = -80; // adjust this value if needed
+        const y =
+          mediaRef.current.getBoundingClientRect().top +
+          window.pageYOffset +
+          yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      }
     }, 80);
   };
 
