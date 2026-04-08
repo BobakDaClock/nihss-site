@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { nihssItems } from "../nihssData";
 import FAQMedia from "./FAQMedia.jsx";
@@ -23,6 +23,13 @@ export default function ComponentPage() {
   const [selectedScoreIndex, setSelectedScoreIndex] = useState(0);
   const [faqOpen, setFaqOpen] = useState(null);
   const [imageError, setImageError] = useState(false);
+
+  const scoringRef = useRef(null);
+  const mediaRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!item) {
     return (
@@ -50,8 +57,27 @@ export default function ComponentPage() {
   const activeImageEntries = getImageEntries(item, selectedScoreIndex);
   const faqs = item.faqs || [];
 
+  const handleScoreSelect = (index) => {
+    setSelectedScoreIndex(index);
+    setImageError(false);
+
+    setTimeout(() => {
+      mediaRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 80);
+  };
+
+  const handleScrollToScoring = () => {
+    scoringRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#eef8ff_30%,_#374151_68%,_#000000_100%)] px-6 py-16 text-slate-900">
+    <main className="min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#eef8ff_30%,_#374151_68%,_#000000_100%)] px-4 sm:px-6 py-10 sm:py-16 text-slate-900">
       <div className="mx-auto max-w-5xl">
         <Link
           to="/"
@@ -60,16 +86,16 @@ export default function ComponentPage() {
           ← Back to Home
         </Link>
 
-        <section className="mt-8 rounded-[2rem] border border-white/60 bg-white/22 p-8 shadow-[0_30px_80px_rgba(59,130,246,0.12)] backdrop-blur-[28px]">
+        <section className="mt-6 sm:mt-8 rounded-[2rem] border border-white/60 bg-white/22 p-5 sm:p-8 shadow-[0_30px_80px_rgba(59,130,246,0.12)] backdrop-blur-[28px]">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-600/90">
                 Item {item.id}
               </p>
-              <h1 className="mt-3 text-4xl font-semibold text-slate-900">
+              <h1 className="mt-3 text-3xl sm:text-4xl font-semibold leading-tight text-slate-900">
                 {item.title}
               </h1>
-              <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
+              <p className="mt-4 max-w-3xl text-base sm:text-lg leading-8 text-slate-600">
                 {item.overview}
               </p>
             </div>
@@ -81,7 +107,10 @@ export default function ComponentPage() {
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             {/* SCORING */}
-            <div className="rounded-[1.75rem] border border-white/65 bg-white/30 p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]">
+            <div
+              ref={scoringRef}
+              className="rounded-[1.75rem] border border-white/65 bg-white/30 p-5 sm:p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]"
+            >
               <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
                 Scoring
               </h2>
@@ -94,10 +123,7 @@ export default function ComponentPage() {
                     <li key={line}>
                       <button
                         type="button"
-                        onClick={() => {
-                          setSelectedScoreIndex(index);
-                          setImageError(false);
-                        }}
+                        onClick={() => handleScoreSelect(index)}
                         className={`w-full rounded-[1.25rem] border px-4 py-3 text-left text-base transition-all duration-300 backdrop-blur-2xl ${
                           isActive
                             ? "border-sky-300/80 bg-sky-200/38 text-slate-900 shadow-[0_0_0_1px_rgba(125,211,252,0.24),0_14px_32px_rgba(56,189,248,0.16)]"
@@ -110,10 +136,19 @@ export default function ComponentPage() {
                   );
                 })}
               </ul>
+
+              <div className="mt-6 md:hidden">
+                <Link
+                  to={`/item/${item.slug}/misconceptions`}
+                  className="inline-flex w-full items-center justify-center rounded-[1.25rem] border border-sky-200/70 bg-white/38 px-5 py-4 text-base font-medium text-sky-700 shadow-[0_12px_30px_rgba(56,189,248,0.08)] backdrop-blur-2xl transition-all duration-300 hover:bg-sky-50/70 hover:text-sky-800"
+                >
+                  Common Misconceptions
+                </Link>
+              </div>
             </div>
 
             {/* TEACHING NOTES */}
-            <div className="rounded-[1.75rem] border border-white/65 bg-white/30 p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]">
+            <div className="hidden md:block rounded-[1.75rem] border border-white/65 bg-white/30 p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
                 Teaching Notes
               </h2>
@@ -139,12 +174,25 @@ export default function ComponentPage() {
           </div>
 
           {/* MEDIA */}
-          <div className="mt-8 rounded-[1.75rem] border border-white/65 bg-white/28 p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-sky-600/90">
-              Media Module
-            </p>
+          <div
+            ref={mediaRef}
+            className="mt-8 rounded-[1.75rem] border border-white/65 bg-white/28 p-4 sm:p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-medium uppercase tracking-[0.2em] text-sky-600/90">
+                Media Module
+              </p>
 
-            <div className="mt-6 rounded-[1.5rem] border border-white/70 bg-white/38 shadow-[0_12px_32px_rgba(148,163,184,0.08)] backdrop-blur-2xl p-4">
+              <button
+                type="button"
+                onClick={handleScrollToScoring}
+                className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/40 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 shadow-[0_8px_20px_rgba(148,163,184,0.08)] backdrop-blur-2xl transition hover:bg-white/55"
+              >
+                Back to Scoring
+              </button>
+            </div>
+
+            <div className="mt-4 sm:mt-6 rounded-[1.25rem] sm:rounded-[1.5rem] bg-white/20 sm:border sm:border-white/70 sm:bg-white/38 sm:p-4 sm:shadow-[0_12px_32px_rgba(148,163,184,0.08)] sm:backdrop-blur-2xl">
               {!imageError ? (
                 <div className="space-y-6">
                   {activeImageEntries.map((entry, index) => (
@@ -156,7 +204,7 @@ export default function ComponentPage() {
                       )}
 
                       <div className="overflow-hidden rounded-[1.25rem] border border-white/70 bg-white/34">
-                        <div className="flex min-h-[320px] items-center justify-center md:min-h-[380px]">
+                        <div className="flex min-h-[260px] items-center justify-center sm:min-h-[320px] md:min-h-[380px]">
                           <img
                             src={entry.src}
                             alt=""
@@ -169,7 +217,7 @@ export default function ComponentPage() {
                   ))}
                 </div>
               ) : (
-                <div className="flex min-h-[320px] items-center justify-center text-slate-500">
+                <div className="flex min-h-[260px] sm:min-h-[320px] items-center justify-center text-slate-500">
                   Image not found
                 </div>
               )}
@@ -178,7 +226,7 @@ export default function ComponentPage() {
 
           {/* COMMON QUESTIONS */}
           {faqs.length > 0 && (
-            <div className="mt-8 rounded-[1.75rem] border border-white/65 bg-white/28 p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]">
+            <div className="mt-8 rounded-[1.75rem] border border-white/65 bg-white/28 p-5 sm:p-6 shadow-[0_20px_45px_rgba(148,163,184,0.10),inset_0_1px_0_rgba(255,255,255,0.7)] backdrop-blur-[24px]">
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-sky-600/90">
                 Common Questions
               </p>
@@ -192,14 +240,14 @@ export default function ComponentPage() {
                       }
                       className="w-full rounded-[1.25rem] border border-white/70 bg-white/36 px-5 py-4 text-left text-base font-medium text-slate-800 backdrop-blur-2xl"
                     >
-                      <div className="flex justify-between">
+                      <div className="flex justify-between gap-4">
                         <span>{faq.question}</span>
                         <span>{faqOpen === index ? "−" : "+"}</span>
                       </div>
                     </button>
 
                     {faqOpen === index && (
-                      <div className="mt-2 rounded-[1.25rem] border border-white/70 bg-white/34 px-5 py-4 text-slate-700 space-y-4">
+                      <div className="mt-2 space-y-4 rounded-[1.25rem] border border-white/70 bg-white/34 px-5 py-4 text-slate-700">
                         <div>{faq.answer}</div>
 
                         {faq.media && <FAQMedia media={faq.media} />}
